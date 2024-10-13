@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Pet Clothes Shop</string>
+    <string name="let_s_explore">Let\'s Explore</string>
+    <string name="welcome_content">Check our latest fashion collection For Your Most Loyal Friend</string>
+    <string name="choose_dress">Choose Dress</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="products">Products</string>
+    <string name="_100_000_vnd">100.000 VND</string>
+    <string name="huft_sweatshirt_for_dogs_dark_grey">HUFT Sweatshirt For Dogs - Dark Grey</string>
+    <string name="rate">Rate:</string>
+    <string name="size">Size:</string>
+    <string name="description">Description:</string>
+    <string name="description_content">Visionary hoodie. Multicolored pastel panels and visionary embroidery on the chest.Made in Portugal 100% cotton. The quality of sweat shirt is very nice.</string>
+    <string name="s">S</string>
+    <string name="m">M</string>
+    <string name="l">L</string>
+    <string name="xl">XL</string>
+    <string name="_4_9_5">4.9/5</string>
+</resources>
