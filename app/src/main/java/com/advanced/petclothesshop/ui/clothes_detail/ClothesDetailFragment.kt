@@ -8,7 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.advanced.petclothesshop.R
+import com.advanced.petclothesshop.data.Datasource
+import com.advanced.petclothesshop.data.PetClothes
 import com.advanced.petclothesshop.databinding.FragmentClothesDetailBinding
+import com.advanced.petclothesshop.utils.Constants
 
 class ClothesDetailFragment : Fragment() {
 
@@ -29,6 +32,12 @@ class ClothesDetailFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             viewModel = clothesDetailViewModel
             clothesDetailsFragment = this@ClothesDetailFragment
+
+            // Set up data
+            val receivedId = requireArguments().getInt(Constants.KEY_CLOTHES_ID)
+            val data: PetClothes? = Datasource().loadPetClothesList().find { it.id == receivedId }
+            product = data
+            imageProduct.setImageResource(data?.image?: R.drawable.image_dog)
         }
     }
 

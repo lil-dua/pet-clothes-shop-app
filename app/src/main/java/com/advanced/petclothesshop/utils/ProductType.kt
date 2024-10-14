@@ -6,4 +6,6 @@ package com.advanced.petclothesshop.utils
 enum class ProductType {
     NEW_ARRIVAL,
     HOT_PRODUCT,
+    ACCESSORIES,
+    MODEL
 }

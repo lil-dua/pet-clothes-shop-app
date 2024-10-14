@@ -9,11 +9,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.advanced.petclothesshop.R
+import com.advanced.petclothesshop.data.Datasource
+import com.advanced.petclothesshop.data.PetClothes
 import com.advanced.petclothesshop.databinding.FragmentHomeBinding
 import com.advanced.petclothesshop.ui.home.banner.AutoSlideImageAdapter
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
+import com.advanced.petclothesshop.ui.home.product_list.GridSpacingItemDecoration
+import com.advanced.petclothesshop.ui.home.product_list.ProductListAdapter
+import com.advanced.petclothesshop.utils.Constants
 
 class HomeFragment : Fragment() {
 
@@ -41,41 +45,52 @@ class HomeFragment : Fragment() {
             homeFragment = this@HomeFragment
             lifecycleOwner = viewLifecycleOwner
             viewModel = homeViewModel
+
         }
 
         initViews()
+        initListProducts()
+    }
+
+    private fun initListProducts() {
+        val data = Datasource().loadPetClothesList()
+        val productListAdapter = ProductListAdapter(
+            productList = data,
+            onItemClick = {
+                navigationToClothesDetail(petClothes = it)
+            }
+        )
+        binding?.recyclerViewProduct?.apply {
+            layoutManager = GridLayoutManager(context.applicationContext, 2)
+            addItemDecoration(GridSpacingItemDecoration(2, 16, true))
+            adapter = productListAdapter
+        }
+    }
+
+    private fun navigationToClothesDetail(petClothes: PetClothes) {
+        val bundle = Bundle()
+        bundle.putInt(Constants.KEY_CLOTHES_ID, petClothes.id)
+        findNavController().navigate(R.id.action_navigation_home_to_navigation_clothes_detail, bundle)
     }
 
     private fun initViews() {
         // Banner adapter
-        slideImageAdapter = AutoSlideImageAdapter(
-            imageList = listImageBanner,
-            onItemClick = {
-
-            }
-        )
-        binding?.viewPagerBanner?.adapter = slideImageAdapter
-        val runnable = object : Runnable {
-            override fun run() {
-                if (currentPage == listImageBanner.size) {
-                    currentPage = 0
-                }
-                binding?.viewPagerBanner?.setCurrentItem(currentPage++, true)
-                handler.postDelayed(this, 3000)
-            }
-        }
-        handler.postDelayed(runnable, 3000)
+//        slideImageAdapter = AutoSlideImageAdapter(
+//            imageList = listImageBanner,
+//            onItemClick = {
+//
+//            }
+//        )
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
         slideImageAdapter = null
-
         handler.removeCallbacksAndMessages(null)
     }
+
     fun showClothesDetails() {
         findNavController().navigate(R.id.action_navigation_home_to_navigation_clothes_detail)
     }
-
 }

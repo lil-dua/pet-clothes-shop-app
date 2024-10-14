@@ -5,6 +5,9 @@
 
     <data>
         <variable
+            name="product"
+            type="com.advanced.petclothesshop.data.PetClothes" />
+        <variable
             name="viewModel"
             type="com.advanced.petclothesshop.ui.clothes_detail.ClothesDetailViewModel" />
         <variable
@@ -76,7 +79,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="30dp"
             android:fontFamily="@font/poppins_semibold"
-            android:text="@string/huft_sweatshirt_for_dogs_dark_grey"
+            android:text="@{product.name}"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@id/text_price"
@@ -135,7 +138,7 @@
                 android:gravity="center"
                 android:layout_marginTop="3dp"
                 android:layout_marginStart="5dp"
-                android:text="@string/_4_9_5"
+                android:text="@{product.rating + @string/_5}"
                 android:textColor="@color/black"
                 android:textSize="14sp"/>
 
@@ -231,7 +234,7 @@
             android:layout_marginTop="2dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/poppins"
-            android:text="@string/description_content"
+            android:text="@{product.description}"
             android:textColor="@color/secondary_text"
             android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@id/button_add_to_cart"
